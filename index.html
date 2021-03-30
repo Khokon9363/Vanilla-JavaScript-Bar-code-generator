@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vanilla JavaScript Bar-code generator</title>
+	<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.3/dist/JsBarcode.all.min.js"></script>
+</head>
+<body>
+
+    <input type="text" onkeyup="generateBarcode(this.value)" id="field">
+	<svg id="barcode"></svg>
+
+    <script type="text/javascript">
+        document.addEventListener("contextmenu", function(e){
+            e.preventDefault();
+        }, false);
+    </script>
+	<script>
+		document.getElementById('barcode').style.display = 'none';
+		function generateBarcode(value) {
+			document.getElementById('barcode').style.display = 'block';
+			if (value.trim().length == 0) {
+				document.getElementById('field').value = '';
+				document.getElementById('barcode').style.display = 'none';
+				return false;
+			}
+			JsBarcode("#barcode", value, {
+				  width: 1,
+				  height: 50,
+				  displayValue: true
+				});
+		}
+	</script>
+</body>
+</html>
